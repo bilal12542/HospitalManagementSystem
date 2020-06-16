@@ -15,7 +15,7 @@ public class Doctor extends Person{
 	}
 	@Override
 	public String toString() {
-		return super.toString() + "\nDepartment: " + this.department + "\nRoom: "
+		return super.toString() + "Department: " + this.department + "\nRoom: "
 				+ this.room + "\nSpecialization: " + this.specialization;
 	}
 }
