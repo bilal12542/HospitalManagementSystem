@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Doctor extends Person{
 	private String specialization, department;
-	private int id, room;
+	private int room;
 	Doctor (int id){
 		super('D' + Integer.toString(id));
 		Scanner input = new Scanner(System.in);

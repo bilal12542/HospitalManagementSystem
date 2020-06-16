@@ -16,7 +16,8 @@ public class Person {
 	}
 	public String toString() {
 		return "ID: " + this.id + "\nFname: " + this.full_name + "\naddress: " + 
-	this.address + "\nPhone Number: " + this.phone + "\n";
+	this.address + "\nPhone Number: " + "\nGender: " + this.gender 
+	+ this.phone + "\n";
 	}
 	
 }
