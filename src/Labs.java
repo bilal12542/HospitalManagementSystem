@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
 class labs{
-    String facility;
+    String test_name;
     int lab_cost;
     public labs(){
         Scanner input = new Scanner(System.in);
-        System.out.print("Facility:-");
-        facility = input.nextLine();
+        System.out.print("Test Name:");
+        test_name = input.nextLine();
         System.out.print("Cost:");
         lab_cost = input.nextInt();
     }
     public String toString(){
-        return facility + "\t\t" + lab_cost;
+        return this.test_name + "\t\t" + this.lab_cost;
     }
 }

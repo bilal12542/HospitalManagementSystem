@@ -7,6 +7,6 @@ public interface HospitalManagementSystem {
 	public void Patient();
 	public void Staff();
 	public void Medicine();
-	public void Record();
-	public void Prescription();
+	//public void Record();
+	public void Labs();
 }
