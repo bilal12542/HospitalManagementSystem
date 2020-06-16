@@ -7,4 +7,6 @@ public class Hospital {
 		this.hospital_name = hospital_name;
 		this.address = address;
 	}
+	
 }
+	
