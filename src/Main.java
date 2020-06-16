@@ -2,7 +2,8 @@
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Staff st = new Staff(284823);
+		System.out.println(st.toString());
 
 	}
 

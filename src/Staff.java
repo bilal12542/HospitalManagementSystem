@@ -1,22 +1,19 @@
+import java.util.Scanner;
 
-public class Staff {
-	
-	public void Staff() {
+public class Staff extends Person{
+	int salary;
+	String desig;
+	public Staff(int sid) {
+        super('S' + Integer.toString(sid));
         Scanner input = new Scanner(System.in);
-
-        System.out.print("id:-");
-        sid = input.nextLine();
-
-        System.out.print("name:-");
-        sname = input.nextLine();
-
-        System.out.print("desigination:-");
-        desg = input.nextLine();
-
-        System.out.print("sex:-");
-        sex = input.nextLine();
-
-        System.out.print("salary:-");
-       
+		System.out.println("Salary: ");
+        this.salary = input.nextInt();
+		System.out.println("Designation: ");
+        this.desig = input.nextLine();
+	}
+	@Override
+	public String toString() {
+		return super.toString()+ "Designation: " + this.desig
+				+ "\nsalary: " + this.salary;
 	}
 }
