@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 
 public class Nurse {
 	private String department;
-	List<Integer> Ward = new ArrayList<>();
+	ArrayList<Integer> Ward = new ArrayList<>();
 	Nurse (String department){
 		this.department = department;	
 		this.Ward = Ward;

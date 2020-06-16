@@ -4,3 +4,9 @@
 /Hospital.class
 /Doctor.class
 /Record.class
+/Nurse.class
+/Patient.class
+/Prescription.class
+/Receptionist.class
+/Ward.class
+/TechnicalStaff.class
