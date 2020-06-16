@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Nurse {
+public class Nurse extends Person{
 	private String department;
-	ArrayList<Integer> Ward = new ArrayList<>();
-	Nurse (String department){
-		this.department = department;	
-		this.Ward = Ward;
+	ArrayList<Ward> Ward = new ArrayList<Ward>();
+	Nurse(int id, String department){
+		super('N' + Integer.toString(id));
+		Scanner input = new Scanner(System.in);
+		this.department = input.nextLine();
 	}
 }
