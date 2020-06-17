@@ -1,10 +1,8 @@
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -24,7 +22,6 @@ public class FileHandling {
 	}
 	public void readSheet(String sheet) throws IOException {
 		sh = wb.getSheet(sheet);
-		int noOfRows = sh.getLastRowNum();
-		System.out.println(noOfRows);
+		row = sh.getRow(0);
 	}
 }
