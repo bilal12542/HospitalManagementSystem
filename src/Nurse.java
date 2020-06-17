@@ -5,7 +5,7 @@ public class Nurse extends Person{
 	private String department;
 	ArrayList<Integer> Ward = new ArrayList<Integer>();
 	Nurse(int id, String department){
-		super('N' + Integer.toString(id));
+		super();
 		Scanner input = new Scanner(System.in);
 		this.department = input.nextLine();
 	}

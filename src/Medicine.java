@@ -3,7 +3,7 @@ import java.util.Scanner;
 class Medicine{
     String med_name, med_comp, exp_date;
     int med_cost, count;
-    void new_medi(){
+    public Medicine(){
         Scanner input = new Scanner(System.in);
         System.out.print("Name:");
         med_name = input.nextLine();

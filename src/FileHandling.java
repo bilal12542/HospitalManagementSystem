@@ -20,8 +20,8 @@ public class FileHandling {
 		fis = new FileInputStream(fl);
 		wb = WorkbookFactory.create(fis);
 	}
-	public void readSheet(String sheet) throws IOException {
+	public Sheet readSheet(String sheet, Object obj) throws IOException {
 		sh = wb.getSheet(sheet);
-		row = sh.getRow(0);
+		return sh;
 	}
 }

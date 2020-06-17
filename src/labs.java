@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class labs{
+public class labs{
     String test_name;
     int lab_cost;
     public labs(){
