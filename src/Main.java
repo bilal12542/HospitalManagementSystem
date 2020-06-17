@@ -1,10 +1,8 @@
 
 public class Main {
 
-	public static void main(String[] args) {
-		Doctor st = new Doctor(284823);
-		System.out.println(st.toString());
-
+	public static void main(String[] args) throws Exception {
+		FileHandling file = new FileHandling("hospital1.xlsx");
+		file.readSheet("hospital");
 	}
-
 }
