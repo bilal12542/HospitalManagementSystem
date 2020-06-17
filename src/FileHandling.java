@@ -12,9 +12,9 @@ public class FileHandling {
 	private static Workbook wb;
 	private static Sheet sh;
 	private static FileInputStream fis;
-	private static FileOutputStream fos;
-	private static Row row;
-	private static Cell cell;
+//	private static FileOutputStream fos;
+//	private static Row row;
+//	private static Cell cell;
 	public FileHandling(String file) throws Exception {
 		final String fl = "./" + file; 
 		fis = new FileInputStream(fl);

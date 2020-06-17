@@ -20,7 +20,7 @@ public class Nurse extends Person{
 		}
 	}
 	public String toString() {
-		return super.toString() + "Department: " + this.department + "\nWards: "
-				+ this.Ward;
+		return super.toString() + "Department: " + department + "\nWards: "
+				+ Ward;
 	}
 }
