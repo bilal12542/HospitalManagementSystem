@@ -1,19 +1,16 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 
 public class Doctor extends Person{
-	private String specialization, department;
-	private String room;
-	private String id;
-	private String full_name;
-	private String gender;
-	private String address;
-	private String phone;
-	public Doctor() {
+	private String specialization, department, room, id, full_name, gender, address, phone;
+	ArrayList<Doctor> arrDoc;
+	private FileHandling file; 
+	public Doctor(FileHandling file) throws IOException {
 		super();
+		file.readSheet("doctor");
 	}
 	public Doctor(String full_name, String id, String gender, String address, String phone, 
 			String specialization, String room, String department){
@@ -22,13 +19,10 @@ public class Doctor extends Person{
 		this.specialization = specialization;
 		this.room = room;
 	}
-	public void newDoctor (Sheet sh){
+	public void newDoctor (FileHandling file) throws IOException{
 		Scanner input = new Scanner(System.in);
-		int i =  sh.getLastRowNum();
-		Row row = sh.createRow(i+1);
-		for (int j = 0; j < sh.getRow(0).getLastCellNum(); j++) {
-	        row.createCell(j);                
-		}
+		int i =  file.lastRow();
+		Row row = file.createRowCell(i+1);
 		System.out.println("Enter ID: ");
 		id = "D-" + input.nextLine();
 		System.out.println("Enter Full Name: ");
@@ -41,7 +35,7 @@ public class Doctor extends Person{
 		phone = input.nextLine();
 		System.out.println("Enter Specialization: ");
 		this.specialization = input.nextLine(); 
-		row.getCell(5).setCellValue("specialization");
+		row.getCell(5).setCellValue(specialization);
 		System.out.println("Enter Department: ");
 		this.department = input.nextLine();
 		row.getCell(7).setCellValue(department);
@@ -49,24 +43,31 @@ public class Doctor extends Person{
 		this.room = input.nextLine();
 		row.getCell(6).setCellValue(room);
 		super.addPerson(row, id, full_name, gender, address, phone);
-
+		file.writeSheet();
 	}
-	public ArrayList<Doctor> viewAll(Sheet sh) {
+	private void addAllDocObj(FileHandling file) {
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();
-		for(int i = 0; i < sh.getLastRowNum(); i++) {
-			doc.add(new Doctor(sh.getRow(i+1).getCell(1).getStringCellValue(),
-					sh.getRow(i+1).getCell(0).getStringCellValue(),
-					sh.getRow(i+1).getCell(2).getStringCellValue(),
-					sh.getRow(i+1).getCell(4).getStringCellValue(),
-					String.valueOf(sh.getRow(i+1).getCell(3).getNumericCellValue()),
-					sh.getRow(i+1).getCell(5).getStringCellValue(),
-					sh.getRow(i+1).getCell(6).getStringCellValue(),
-					sh.getRow(i+1).getCell(7).getStringCellValue()
+		Row row;
+		for(int i = 0; i < file.lastRow(); i++) {
+			row = file.getRow(i+1);
+			doc.add(new Doctor(row.getCell(1).getStringCellValue(),
+					row.getCell(0).getStringCellValue(),
+					row.getCell(2).getStringCellValue(),
+					row.getCell(4).getStringCellValue(),
+					row.getCell(3).getStringCellValue(),
+					row.getCell(5).getStringCellValue(),
+					row.getCell(6).getStringCellValue(),
+					row.getCell(7).getStringCellValue()
 					));
 		}
-		return doc;
+		this.arrDoc = doc;
 	}
-	
+	public void viewAll(FileHandling file) {
+		addAllDocObj(file);
+		for(int i = 0; i<arrDoc.size(); i++) {
+			this.arrDoc.get(i).printDoc();
+		}
+	}
 	public void printDoc() {
 		System.out.println( super.toString() + "Department: " + department + "\tRoom: "
 				+ room + "\tSpecialization: " + specialization);
