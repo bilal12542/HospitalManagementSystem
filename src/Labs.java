@@ -54,6 +54,6 @@ public class Labs{
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
     public void printLabs(){
-        System.out.println( "Test Name: " + test_name + "\t" + "Cost: " + lab_cost);
+        System.out.println( "Test Name: " + test_name + "\tCost: " + lab_cost);
     }
 }
