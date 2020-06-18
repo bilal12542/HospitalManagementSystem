@@ -7,10 +7,10 @@ public class Main {
 //		Doctor doc = new Doctor(file);
 //		doc.newDoctor(file);
 //		Staff staff = new Staff(file);
-		Meds Med = new Meds(file);
-		Med.newMed(file);
+		Medicine Meds = new Medicine(file);
+		Meds.newMed(file);
 //		staff.newStaff(file);
-		Med.viewAllMeds();
+		Meds.viewAllMeds();
 //		staff.newStaff(file);
 //		staff.viewAllStaff();
 	}
