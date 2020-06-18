@@ -9,7 +9,7 @@ public class Doctor extends Person{
 	ArrayList<Doctor> arrDoc;
 	public Doctor(FileHandling file) throws IOException {
 		super();
-		file.readSheet("doctor");
+		getDocSheet(file);
 		addAllDocObj(file);
 	}
 	public Doctor(String full_name, String id, String gender, String address, String phone, 
@@ -20,9 +20,9 @@ public class Doctor extends Person{
 		this.room = room;
 	}
 	public void newDoctor (FileHandling file) throws IOException{
+		getDocSheet(file);
 		Scanner input = new Scanner(System.in);
-		int i =  file.lastRow();
-		Row row = file.createRowCell(i+1);
+		Row row = file.createRowCell(file.lastRow()+1);
 		System.out.println("Enter ID: ");
 		id = "D-" + input.nextLine();
 		System.out.println("Enter Full Name: ");
@@ -44,6 +44,7 @@ public class Doctor extends Person{
 		row.getCell(6).setCellValue(room);
 		super.addPerson(row, id, full_name, gender, address, phone);
 		file.writeSheet();
+		addAllDocObj(file);
 	}
 	private void addAllDocObj(FileHandling file) {
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();
@@ -62,14 +63,21 @@ public class Doctor extends Person{
 		}
 		this.arrDoc = doc;
 	}
-	public void viewAll() {
+	public void viewAllDoc() {
+		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Doctors - - - - - - - - - - - - - "
+				+ "- - - - - - - - - - - - - - - - -X");
 		for(int i = 0; i<arrDoc.size(); i++) {
 			this.arrDoc.get(i).printDoc();
 		}
-	}
+		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Doctors - - - - - - - - - - - - - "
+				+ "- - - - - - - - - - - - - - - - -X");
+		}
 	public void printDoc() {
 		System.out.println( super.toString() + "Department: " + department + "\tRoom: "
 				+ room + "\tSpecialization: " + specialization);
+	}
+	public void getDocSheet(FileHandling file) throws IOException {
+		file.readSheet("doctor");
 	}
 }
 

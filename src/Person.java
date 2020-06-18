@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import org.apache.poi.ss.usermodel.Row;
 public class Person {
 	private String full_name, gender, id, address;

@@ -4,7 +4,7 @@ public class Patient extends Person{
 	private String blood_group;
 	String registration_date;
 	Patient (int id, int registration_date, String blood_group){
-		super('P' + Integer.toString(id));
+		super();
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter Registration Date: ");
 		this.registration_date = input.nextLine();
