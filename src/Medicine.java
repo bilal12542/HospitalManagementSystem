@@ -65,6 +65,8 @@ public class Medicine{
 		
 		file.writeSheet();
 		addAllMedObj(file);
+		
+		input.close();
     }
 	public void viewAllMeds() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Meds - - - - - - - - - - - - - "
