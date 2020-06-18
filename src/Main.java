@@ -6,6 +6,7 @@ public class Main {
 		FileHandling file = new FileHandling("hospital1.xlsx");
 		Doctor doc = new Doctor(file);
 //		doc.newDoctor(file);
-		doc.viewAll(file);
+		doc.viewAll();
+		System.out.print(doc.arrDoc.get(1));
 	}
 }

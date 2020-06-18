@@ -7,10 +7,10 @@ import org.apache.poi.ss.usermodel.Row;
 public class Doctor extends Person{
 	private String specialization, department, room, id, full_name, gender, address, phone;
 	ArrayList<Doctor> arrDoc;
-	private FileHandling file; 
 	public Doctor(FileHandling file) throws IOException {
 		super();
 		file.readSheet("doctor");
+		addAllDocObj(file);
 	}
 	public Doctor(String full_name, String id, String gender, String address, String phone, 
 			String specialization, String room, String department){
@@ -62,8 +62,7 @@ public class Doctor extends Person{
 		}
 		this.arrDoc = doc;
 	}
-	public void viewAll(FileHandling file) {
-		addAllDocObj(file);
+	public void viewAll() {
 		for(int i = 0; i<arrDoc.size(); i++) {
 			this.arrDoc.get(i).printDoc();
 		}
