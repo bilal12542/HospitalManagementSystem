@@ -2,16 +2,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-Public class Medicine{
+import org.apache.poi.ss.usermodel.Row;
+
+public class Medicine{
 	private String med_name, med_comp, exp_date;
-	private Int med_cost, count;
-	ArrayList<Doctor> arrMeds;
+	private int med_cost, count;
+	ArrayList<Medicine> arrMeds;
 	public Medicine(FileHandling file) throws IOException {
 		super();
 		getMedSheet(file);
 		addAllMedObj(file);
 	}
-    public Labs(String med_name, med_comp, exp_date , int med_cost, count ) {
+    public Medicine(String med_name ,String med_comp,String exp_date , int med_cost, int count) {
     	this.med_name = med_name;
     	this.med_comp = med_comp;
     	this.exp_date = exp_date;
@@ -19,14 +21,14 @@ Public class Medicine{
     	this.count = count;
     }
     private void addAllMedObj(FileHandling file) {
-    	ArrayList<Meds> Meds = new ArrayList<Meds>();
+    	ArrayList<Medicine> Meds = new ArrayList<Medicine>();
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
-			Meds.add(new Meds( row.getCell(0).getStringCellValue(),
-					row.getCell(1).getStringCellValue()
-					row.getCell(2).getStringCellValue()
-					(int) row.getCell(3).getNumericCellValue()
+			Meds.add(new Medicine( row.getCell(0).getStringCellValue(),
+					row.getCell(1).getStringCellValue(),
+					row.getCell(2).getStringCellValue(),
+					(int) row.getCell(3).getNumericCellValue(),
 					(int) row.getCell(4).getNumericCellValue()
 					));
 		}
@@ -37,21 +39,19 @@ Public class Medicine{
 		
 	}
 	
-	public void newLab(FileHandling file) throws IOException{
+	public void newMed(FileHandling file) throws IOException{
 		getMedSheet(file);
 		Row row = file.createRowCell(file.lastRow()+1);
-        Scanner input = new Scanner(System.in);
-        
+		Scanner input = new Scanner(System.in);
         System.out.print("Med Name:");
         this.med_name = input.nextLine();
 		row.getCell(0).setCellValue(med_name);
-		
         System.out.print("Med Company:");
-        this.med_comp = input.nextInt();
+        this.med_comp = input.nextLine();
 		row.getCell(1).setCellValue(med_comp);
 
         System.out.print("Expiry date:");
-        this.exp_date = input.nextInt();
+        this.exp_date = input.nextLine();
 		row.getCell(2).setCellValue(exp_date);
 
         System.out.print("Med Cost:");
@@ -59,8 +59,8 @@ Public class Medicine{
 		row.getCell(3).setCellValue(med_cost);
 
         System.out.print("Count:");
-        this.Count = input.nextInt();
-		row.getCell(4).setCellValue(Count);
+        this.count = input.nextInt();
+		row.getCell(4).setCellValue(count);
 
 		
 		file.writeSheet();
@@ -75,7 +75,7 @@ Public class Medicine{
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Meds - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
-    public void printLabs(){
+    public void printMeds(){
         System.out.println( "Med Name: " + med_name + "\t" + "Med Company: " + med_comp + "\t" + "Expiry date: " + exp_date + "\t" + "Med Cost: " + med_cost + "\t" + "Count: " + count);
     }
 }
