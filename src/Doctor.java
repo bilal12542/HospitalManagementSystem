@@ -12,6 +12,7 @@ public class Doctor extends Person{
 		getDocSheet(file);
 		addAllDocObj(file);
 	}
+	
 	public Doctor(String full_name, String id, String gender, String address, String phone, 
 			String specialization, String room, String department){
 		super(id, full_name, gender, address, phone);
