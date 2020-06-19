@@ -24,9 +24,9 @@ public class Main {
 					System.out.println("Add Press '2'");
 					System.out.println("Main Menu Press '3'");
 					switch(sc.nextInt()) {
-					case 1:
-						doc.viewAllDoc();
 					case 2:
+						doc.viewAllDoc();
+					case 1:
 						doc.newDoctor(file);
 						doc.viewAllDoc();
 					case 3:
