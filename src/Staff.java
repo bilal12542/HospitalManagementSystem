@@ -42,7 +42,8 @@ public class Staff extends Person{
 		row.getCell(5).setCellValue(salary);
 		super.addPerson(row, id, full_name, gender, address, phone);
 		file.writeSheet();
-		addAllStaffObj(file);
+		arrStaff.add(new Staff(id, full_name, gender, phone, address, desig, salary));
+		input.close();
 	}
 	private void addAllStaffObj(FileHandling file) {
 		ArrayList<Staff> staff = new ArrayList<Staff>();

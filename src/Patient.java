@@ -25,7 +25,7 @@ public class Patient extends Person{
 		Scanner input = new Scanner(System.in);
 		Row row = file.createRowCell(file.lastRow()+1);
 		System.out.println("Enter ID: ");
-		id = "D-" + input.nextLine();
+		id = "P-" + input.nextLine();
 		System.out.println("Enter Full Name: ");
 		full_name = input.nextLine();
 		System.out.println("Enter Address: ");
@@ -43,7 +43,7 @@ public class Patient extends Person{
 
 		super.addPerson(row, id, full_name, gender, address, phone);
 		file.writeSheet();
-		addAllPatObj(file);
+		arrPat.add(new Patient(full_name, id, gender, address, phone, blood_group, registration_date));
 		input.close();
 	}
 	private void addAllPatObj(FileHandling file) {
@@ -76,7 +76,7 @@ public class Patient extends Person{
 				+ registration_date);
 	}
 	public void getPatSheet(FileHandling file) throws IOException {
-		file.readSheet("Patient");
+		file.readSheet("patient");
 	}
 }
 

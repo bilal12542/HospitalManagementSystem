@@ -45,7 +45,8 @@ public class Doctor extends Person{
 		row.getCell(6).setCellValue(room);
 		super.addPerson(row, id, full_name, gender, address, phone);
 		file.writeSheet();
-		addAllDocObj(file);
+		arrDoc.add(new Doctor(full_name, id, gender, address, phone, specialization, room, department));
+		input.close();
 	}
 	private void addAllDocObj(FileHandling file) {
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();

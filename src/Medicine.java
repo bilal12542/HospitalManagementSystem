@@ -35,7 +35,7 @@ public class Medicine{
 		this.arrMeds = Meds;
 	}
 	private void getMedSheet(FileHandling file) throws IOException {
-		file.readSheet("Meds");
+		file.readSheet("meds");
 		
 	}
 	
@@ -64,7 +64,7 @@ public class Medicine{
 
 		
 		file.writeSheet();
-		addAllMedObj(file);
+		arrMeds.add(new Medicine(med_name, med_comp, exp_date, med_cost, count));
 		
 		input.close();
     }

@@ -42,7 +42,8 @@ public class Labs{
         this.lab_cost = input.nextInt();
 		row.getCell(1).setCellValue(lab_cost);
 		file.writeSheet();
-		addAllLabObj(file);
+		arrLabs.add(new Labs(test_name, lab_cost));
+		input.close();
     }
 	public void viewAllLabs() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Labs - - - - - - - - - - - - - "
