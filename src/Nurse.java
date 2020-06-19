@@ -66,7 +66,7 @@ public class Nurse extends Person{
 		for(int i = 0; i<arrNur.size(); i++) {
 			this.arrNur.get(i).printNurse();
 		}
-		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Staffs - - - - - - - - - - - - - "
+		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Nurse - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
 	}
 	public void printNurse() {
