@@ -19,6 +19,9 @@ public class Record {
 		this.sickness = sickness;
 		this.medicines = medicines;
 	}
+	public void getRecSheet(FileHandling file) throws IOException {
+		file.readSheet("record");
+	}
 	public void newRecord(FileHandling file) throws IOException{
 		getRecSheet(file);
 		Scanner input = new Scanner(System.in);
@@ -45,6 +48,42 @@ public class Record {
 		arrRec.add(new Record(id, patient_id, date, treatment, sickness, medicines));
 		input.close();
 	}
+	public String getMedicines() {
+		return medicines;
+	}
+	public void setMedicines(String medicines) {
+		this.medicines = medicines;
+	}
+	public String getSickness() {
+		return sickness;
+	}
+	public void setSickness(String sickness) {
+		this.sickness = sickness;
+	}
+	public String getTreatment() {
+		return treatment;
+	}
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getPatient_id() {
+		return patient_id;
+	}
+	public void setPatient_id(String patient_id) {
+		this.patient_id = patient_id;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	private void addAllRecObj(FileHandling file) {
 		ArrayList<Record> rec = new ArrayList<Record>();
 		Row row;
@@ -69,12 +108,9 @@ public class Record {
 		}
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Record - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
-		}
-	public void printRec() {
-		System.out.println( "ID: " + id + "\tPatient_ID: " + patient_id + "\tDate: " + date + "\tTreatment: "
-				+ treatment + "\tSickness: " + sickness + "\tMedicines: " + medicines);
 	}
-	public void getRecSheet(FileHandling file) throws IOException {
-		file.readSheet("record");
+	public void printRec() {
+		System.out.println( "ID: " + getId() + "\tPatient_ID: " + getPatient_id() + "\tDate: " + getDate() + "\tTreatment: "
+				+ getTreatment() + "\tSickness: " + getSickness() + "\tMedicines: " + getMedicines());
 	}
 }

@@ -20,6 +20,9 @@ public class Doctor extends Person{
 		this.specialization = specialization;
 		this.room = room;
 	}
+	public void getDocSheet(FileHandling file) throws IOException {
+		file.readSheet("doctor");
+	}
 	public void newDoctor (FileHandling file) throws IOException{
 		getDocSheet(file);
 		Scanner input = new Scanner(System.in);
@@ -48,6 +51,30 @@ public class Doctor extends Person{
 		arrDoc.add(new Doctor(full_name, id, gender, address, phone, specialization, room, department));
 		input.close();
 	}
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	private void addAllDocObj(FileHandling file) {
 		ArrayList<Doctor> doc = new ArrayList<Doctor>();
 		Row row;
@@ -65,6 +92,9 @@ public class Doctor extends Person{
 		}
 		this.arrDoc = doc;
 	}
+	public ArrayList<Doctor> getArr() {
+		return this.arrDoc;
+	}
 	public void viewAllDoc() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Doctors - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
@@ -75,11 +105,8 @@ public class Doctor extends Person{
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
 	public void printDoc() {
-		System.out.println( super.toString() + "Department: " + department + "\tRoom: "
-				+ room + "\tSpecialization: " + specialization);
-	}
-	public void getDocSheet(FileHandling file) throws IOException {
-		file.readSheet("doctor");
+		System.out.println( super.toString() + "Department: " + getDepartment() + "\tRoom: "
+				+ getRoom() + "\tSpecialization: " + getSpecialization());
 	}
 }
 

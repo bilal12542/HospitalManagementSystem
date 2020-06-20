@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.poi.ss.usermodel.Row;
 
 public class Staff extends Person{
-	int salary;
+	private int salary;
 	private String desig, id, full_name, gender, address, phone;
 	ArrayList<Staff> arrStaff;
 	public Staff(FileHandling file) throws IOException {
@@ -18,6 +18,9 @@ public class Staff extends Person{
         super(id, full_name, gender, address, phone);
         this.salary = salary;
         this.desig = desig;
+	}
+	public void getStaffSheet(FileHandling file) throws IOException {
+		file.readSheet("staff");
 	}
 	public void newStaff (FileHandling file) throws IOException{
 		getStaffSheet(file);
@@ -45,6 +48,18 @@ public class Staff extends Person{
 		arrStaff.add(new Staff(id, full_name, gender, phone, address, desig, salary));
 		input.close();
 	}
+	public String getDesig() {
+		return desig;
+	}
+	public void setDesig(String desig) {
+		this.desig = desig;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 	private void addAllStaffObj(FileHandling file) {
 		ArrayList<Staff> staff = new ArrayList<Staff>();
 		Row row;
@@ -71,10 +86,7 @@ public class Staff extends Person{
 				+ "- - - - - - - - - - - - - - - - -X");
 	}
 	public void printStaff() {
-		System.out.println(super.toString()+ "Designation: " + this.desig
-				+ "\tsalary: " + this.salary);
-	}
-	public void getStaffSheet(FileHandling file) throws IOException {
-		file.readSheet("staff");
+		System.out.println(super.toString()+ "Designation: " + getDesig()
+				+ "\tsalary: " + getSalary());
 	}
 }

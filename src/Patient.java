@@ -19,7 +19,9 @@ public class Patient extends Person{
 		this.registration_date = registration_date;
 	
 	}
-
+	public void getPatSheet(FileHandling file) throws IOException {
+		file.readSheet("patient");
+	}
 	public void newPatient (FileHandling file) throws IOException{
 		getPatSheet(file);
 		Scanner input = new Scanner(System.in);
@@ -45,6 +47,18 @@ public class Patient extends Person{
 		file.writeSheet();
 		arrPat.add(new Patient(full_name, id, gender, address, phone, blood_group, registration_date));
 		input.close();
+	}
+	public String getRegistration_date() {
+		return registration_date;
+	}
+	public void setRegistration_date(String registration_date) {
+		this.registration_date = registration_date;
+	}
+	public String getBlood_group() {
+		return blood_group;
+	}
+	public void setBlood_group(String blood_group) {
+		this.blood_group = blood_group;
 	}
 	private void addAllPatObj(FileHandling file) {
 		ArrayList<Patient> Pat = new ArrayList<Patient>();
@@ -72,11 +86,8 @@ public class Patient extends Person{
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
 	public void printPat() {
-		System.out.println( super.toString() + "Blood Group: " + blood_group + "\tregistration date: "
-				+ registration_date);
-	}
-	public void getPatSheet(FileHandling file) throws IOException {
-		file.readSheet("patient");
+		System.out.println( super.toString() + "Blood Group: " + getBlood_group() + "\tregistration date: "
+				+ getRegistration_date());
 	}
 }
 

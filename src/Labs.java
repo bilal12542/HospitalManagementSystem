@@ -16,17 +16,6 @@ public class Labs{
     	this.test_name = test_name;
     	this.lab_cost = cost;
     }
-    private void addAllLabObj(FileHandling file) {
-    	ArrayList<Labs> labs = new ArrayList<Labs>();
-		Row row;
-		for(int i = 0; i < file.lastRow(); i++) {
-			row = file.getRow(i+1);
-			labs.add(new Labs(row.getCell(0).getStringCellValue(),
-					(int) row.getCell(1).getNumericCellValue()
-					));
-		}
-		this.arrLabs = labs;
-	}
 	private void getLabSheet(FileHandling file) throws IOException {
 		file.readSheet("labs");
 		
@@ -45,6 +34,29 @@ public class Labs{
 		arrLabs.add(new Labs(test_name, lab_cost));
 		input.close();
     }
+    public int getLab_cost() {
+		return lab_cost;
+	}
+	public void setLab_cost(int lab_cost) {
+		this.lab_cost = lab_cost;
+	}
+	public String getTest_name() {
+		return test_name;
+	}
+	public void setTest_name(String test_name) {
+		this.test_name = test_name;
+	}
+	private void addAllLabObj(FileHandling file) {
+    	ArrayList<Labs> labs = new ArrayList<Labs>();
+		Row row;
+		for(int i = 0; i < file.lastRow(); i++) {
+			row = file.getRow(i+1);
+			labs.add(new Labs(row.getCell(0).getStringCellValue(),
+					(int) row.getCell(1).getNumericCellValue()
+					));
+		}
+		this.arrLabs = labs;
+	}
 	public void viewAllLabs() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Labs - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
@@ -55,6 +67,6 @@ public class Labs{
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
     public void printLabs(){
-        System.out.println( "Test Name: " + test_name + "\tCost: " + lab_cost);
+        System.out.println( "Test Name: " + getTest_name() + "\tCost: " + getLab_cost());
     }
 }

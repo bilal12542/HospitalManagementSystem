@@ -18,6 +18,9 @@ public class Nurse extends Person{
         this.department = department;
         this.ward = ward;
 	}
+	public void getNurSheet(FileHandling file) throws IOException {
+		file.readSheet("nurse");
+	}
 	public void newNurse (FileHandling file) throws IOException{
 		getNurSheet(file);
 		Scanner input = new Scanner(System.in);
@@ -43,6 +46,18 @@ public class Nurse extends Person{
 		file.writeSheet();
 		arrNur.add(new Nurse(id, full_name, gender, phone, address, department, ward));
 		input.close();
+	}
+	public String getWard() {
+		return ward;
+	}
+	public void setWard(String ward) {
+		this.ward = ward;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	private void addAllNurObj(FileHandling file) {
 		ArrayList<Nurse> nur = new ArrayList<Nurse>();
@@ -70,10 +85,7 @@ public class Nurse extends Person{
 				+ "- - - - - - - - - - - - - - - - -X");
 	}
 	public void printNurse() {
-		System.out.println(super.toString()+ "Department: " + this.department
-				+ "\tWard: " + this.ward);
-	}
-	public void getNurSheet(FileHandling file) throws IOException {
-		file.readSheet("nurse");
+		System.out.println(super.toString()+ "Department: " + getDepartment()
+				+ "\tWard: " + getWard());
 	}
 }

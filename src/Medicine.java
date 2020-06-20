@@ -20,20 +20,6 @@ public class Medicine{
     	this.med_cost = med_cost;
     	this.count = count;
     }
-    private void addAllMedObj(FileHandling file) {
-    	ArrayList<Medicine> Meds = new ArrayList<Medicine>();
-		Row row;
-		for(int i = 0; i < file.lastRow(); i++) {
-			row = file.getRow(i+1);
-			Meds.add(new Medicine( row.getCell(0).getStringCellValue(),
-					row.getCell(1).getStringCellValue(),
-					row.getCell(2).getStringCellValue(),
-					(int) row.getCell(3).getNumericCellValue(),
-					(int) row.getCell(4).getNumericCellValue()
-					));
-		}
-		this.arrMeds = Meds;
-	}
 	private void getMedSheet(FileHandling file) throws IOException {
 		file.readSheet("meds");
 		
@@ -47,8 +33,8 @@ public class Medicine{
         this.med_name = input.nextLine();
 		row.getCell(0).setCellValue(med_name);
         System.out.print("Med Company:");
-        this.med_comp = input.nextLine();
-		row.getCell(1).setCellValue(med_comp);
+        this.setMed_comp(input.nextLine());
+		row.getCell(1).setCellValue(getMed_comp());
 
         System.out.print("Expiry date:");
         this.exp_date = input.nextLine();
@@ -64,10 +50,54 @@ public class Medicine{
 
 		
 		file.writeSheet();
-		arrMeds.add(new Medicine(med_name, med_comp, exp_date, med_cost, count));
+		arrMeds.add(new Medicine(med_name, getMed_comp(), exp_date, med_cost, count));
 		
 		input.close();
     }
+    public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getMed_cost() {
+		return med_cost;
+	}
+	public void setMed_cost(int med_cost) {
+		this.med_cost = med_cost;
+	}
+	public String getExp_date() {
+		return exp_date;
+	}
+	public void setExp_date(String exp_date) {
+		this.exp_date = exp_date;
+	}
+	public String getMed_comp() {
+		return med_comp;
+	}
+	public void setMed_comp(String med_comp) {
+		this.med_comp = med_comp;
+	}
+	public String getMed_name() {
+		return med_name;
+	}
+	public void setMed_name(String med_name) {
+		this.med_name = med_name;
+	}
+	private void addAllMedObj(FileHandling file) {
+    	ArrayList<Medicine> Meds = new ArrayList<Medicine>();
+		Row row;
+		for(int i = 0; i < file.lastRow(); i++) {
+			row = file.getRow(i+1);
+			Meds.add(new Medicine( row.getCell(0).getStringCellValue(),
+					row.getCell(1).getStringCellValue(),
+					row.getCell(2).getStringCellValue(),
+					(int) row.getCell(3).getNumericCellValue(),
+					(int) row.getCell(4).getNumericCellValue()
+					));
+		}
+		this.arrMeds = Meds;
+	}
 	public void viewAllMeds() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Meds - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
@@ -78,6 +108,7 @@ public class Medicine{
 				+ "- - - - - - - - - - - - - - - - -X");
 		}
     public void printMeds(){
-        System.out.println( "Med Name: " + med_name + "\t" + "Med Company: " + med_comp + "\t" + "Expiry date: " + exp_date + "\t" + "Med Cost: " + med_cost + "\t" + "Count: " + count);
+        System.out.println( "Med Name: " + getMed_name() + "\t" + "Med Company: " + getMed_comp() + 
+        		"\t" + "Expiry date: " + getExp_date() + "\t" + "Med Cost: " + getMed_cost() + "\t" + "Count: " + getCount());
     }
 }

@@ -4,18 +4,6 @@ public class Person {
 	private String phone;
 	public Person() {
 	}
-//	public Person(String id) {
-//		this.id = id;
-//		Scanner input = new Scanner(System.in);
-//		System.out.println("Enter Full Name: ");
-//		this.full_name = input.nextLine();
-//		System.out.println("Enter Address: ");
-//		this.address = input.nextLine();
-//		System.out.println("Enter Gender: ");
-//		this.gender = input.nextLine();
-//		System.out.println("Enter Phone Number: ");
-//		this.phone = input.nextInt();
-//	}
 	public Person ( String id, String full_name, String gender, String address, String phone) {
 		this.full_name = full_name;
 		this.gender = gender;
@@ -30,9 +18,39 @@ public class Person {
 		row.getCell(4).setCellValue(address);
 		row.getCell(3).setCellValue(phone);
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getFull_name() {
+		return full_name;
+	}
+	public void setFull_name(String full_name) {
+		this.full_name = full_name;
+	}
 	public String toString() {
-		return "ID: " + id + "\tFname: " + full_name + "\taddress: " + 
-	address + "\tPhone Number: " + phone + "\tGender: " + gender + "\t";
+		return "ID: " + getId() + "\tFname: " + getFull_name() + "\taddress: " + 
+	getAddress() + "\tPhone Number: " + getPhone() + "\tGender: " + getGender() + "\t";
 	}
 	
 }
