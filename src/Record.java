@@ -19,7 +19,7 @@ public class Record {
 		this.sickness = sickness;
 		this.medicines = medicines;
 	}
-	public void newDoctor (FileHandling file) throws IOException{
+	public void newRecord(FileHandling file) throws IOException{
 		getRecSheet(file);
 		Scanner input = new Scanner(System.in);
 		Row row = file.createRowCell(file.lastRow()+1);
