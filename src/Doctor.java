@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Row;
 public class Doctor extends Person{
 	private String specialization, department, room, id, full_name, gender, address, phone;
 	ArrayList<Doctor> arrDoc;
+    private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
 	public Doctor(FileHandling file) throws IOException {
 		super();
 		getDocSheet(file);
@@ -51,10 +53,25 @@ public class Doctor extends Person{
 		arrDoc.add(new Doctor(full_name, id, gender, address, phone, specialization, room, department));
 		input.close();
 	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
+	}
+
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+
 	public String getRoom() {
 		return room;
 	}
-
 	public void setRoom(String room) {
 		this.room = room;
 	}
@@ -80,6 +97,9 @@ public class Doctor extends Person{
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
+			if (row == null) {
+				continue;
+			}
 			doc.add(new Doctor(row.getCell(1).getStringCellValue(),
 					row.getCell(0).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -92,9 +112,30 @@ public class Doctor extends Person{
 		}
 		this.arrDoc = doc;
 	}
-	public ArrayList<Doctor> getArr() {
-		return this.arrDoc;
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrDoc.remove(getSearchIndex());
+			viewAllDoc();
+		} else {
+			System.out.println("Input doesn't exist.");
+		}
 	}
+	public boolean search(String str) {
+		ArrayList<Doctor> arr = arrDoc;
+		for (int i = 0; i < arr.size(); i++) {
+			Doctor find = arr.get(i);
+			if(find.getId().equals(str)) {
+				setSearchIndex(i); 
+				getIndexes().add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void updateDoctorSheet(FileHandling file) throws IOException {
+		getDocSheet(file);
+		file.updateSheet(getIndexes());
+	}		
 	public void viewAllDoc() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Doctors - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");

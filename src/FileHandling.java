@@ -1,8 +1,12 @@
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -13,8 +17,6 @@ public class FileHandling {
 	private FileInputStream fis;
 	private FileOutputStream fos;
 	private final String fl;
-//	private static Row row;
-//	private static Cell cell;
 	public FileHandling(String file) throws Exception {
 		this.fl = "./" + file; 
 		this.fis = new FileInputStream(fl);
@@ -41,6 +43,16 @@ public class FileHandling {
 	}
 	public void readSheet(String sheet) throws IOException {
 		this.sh = wb.getSheet(sheet);
+	}
+	public Sheet getSheet() {
+		return sh;
+	}
+	public void updateSheet(ArrayList<Integer> indexes) throws IOException {
+		for(int i: indexes) {
+			getSheet().removeRow(getRow(i+1));
+		}
+		indexes.clear();
+		writeSheet();
 	}
 	public void writeSheet() throws IOException {
 		fos = new FileOutputStream(fl);

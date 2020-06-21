@@ -1,13 +1,20 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 public class Labs{
     private String test_name;
     private int lab_cost;
     private ArrayList<Labs> arrLabs;
+    //public static int flag = 0;
+    private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
+    
     public Labs(FileHandling file) throws IOException {
     	getLabSheet(file);
 		addAllLabObj(file);
@@ -18,7 +25,6 @@ public class Labs{
     }
 	private void getLabSheet(FileHandling file) throws IOException {
 		file.readSheet("labs");
-		
 	}
 	public void newLab(FileHandling file) throws IOException{
 		getLabSheet(file);
@@ -34,11 +40,17 @@ public class Labs{
 		arrLabs.add(new Labs(test_name, lab_cost));
 		input.close();
     }
-    public ArrayList<Labs> getArr() {
-		return arrLabs;
+    public ArrayList<Integer> getIndexes() {
+		return indexes;
 	}
-	public void setArr(ArrayList<Labs> arrLabs) {
-		this.arrLabs = arrLabs;
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
 	}
 	public int getLab_cost() {
 		return lab_cost;
@@ -52,12 +64,55 @@ public class Labs{
 	public void setTest_name(String test_name) {
 		this.test_name = test_name;
 	}
-	public void search(String id) {
-		ArrayList<Labs> arr = getArr();
-		if(arr.contains(id)) {
-			System.out.println("true");
+	public void updateLab(FileHandling file) throws IOException {
+		getLabSheet(file);
+		file.updateSheet(getIndexes());
+	}		
+//		for(int i: indexes) {
+//			
+//			file.getSheet().removeRow(file.getRow(i+1));
+//		}
+//		indexes.clear();
+//		file.writeSheet();
+//	}
+//	public void updateSheet(FileHandling file) throws IOException{
+//		getLabSheet(file);
+//		for (int i = 0; i < getArr().size(); i++) {
+//			Row row = file.getRow(i+1);
+//			Labs arr = getArr().get(i);
+//			for (int j = 0; j < file.lastColumn(); j++) {
+//				Cell cell = row.getCell(j);
+//				if (cell.getCellType() == CellType.STRING) {	
+//					if(cell.getStringCellValue().equals(arr)) {
+//						System.out.println((int)cell.getStringCellValue());
+//					}
+//				} else {	
+//					if (cell.getCellType() == CellType.NUMERIC){
+//						System.out.println((int)cell.getNumericCellValue());			
+//					}
+//					continue;
+//				}
+//			}
+//		}
+//	}
+	public boolean search(String str) {
+		ArrayList<Labs> arr = arrLabs;
+		for (int i = 0; i < arr.size(); i++) {
+			Labs find = arr.get(i);
+			if(find.getTest_name().equals(str)) {
+				setSearchIndex(i); 
+				indexes.add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrLabs.remove(getSearchIndex());
+			viewAllLabs();
 		} else {
-			System.out.println("false");
+			System.out.println("Input doesn't exist.");
 		}
 	}
 	private void addAllLabObj(FileHandling file) {
@@ -65,6 +120,9 @@ public class Labs{
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
+			if (row == null) {
+				continue;
+			}
 			labs.add(new Labs(row.getCell(0).getStringCellValue(),
 					(int) row.getCell(1).getNumericCellValue()
 					));

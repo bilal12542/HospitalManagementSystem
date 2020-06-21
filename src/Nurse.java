@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Row;
 public class Nurse extends Person{
 	private String id, full_name, gender, address, phone, department, ward;
 	ArrayList<Nurse> arrNur;
+	private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
 	public Nurse(FileHandling file) throws IOException {
 		super();
 		getNurSheet(file);
@@ -47,6 +49,18 @@ public class Nurse extends Person{
 		arrNur.add(new Nurse(id, full_name, gender, phone, address, department, ward));
 		input.close();
 	}
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
+	}
 	public String getWard() {
 		return ward;
 	}
@@ -64,6 +78,9 @@ public class Nurse extends Person{
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
+			if (row == null) {
+				continue;
+			}
 			nur.add(new Nurse(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -75,6 +92,31 @@ public class Nurse extends Person{
 		}
 		this.arrNur = nur;
 	}
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrNur.remove(getSearchIndex());
+			viewAllNurse();
+		} else {
+			System.out.println("Input doesn't exist.");
+		}
+	}
+	public boolean search(String str) {
+		ArrayList<Nurse> arr = arrNur;
+		for (int i = 0; i < arr.size(); i++) {
+			Nurse find = arr.get(i);
+			if(find.getId().equals(str)) {
+				setSearchIndex(i); 
+				getIndexes().add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void updateNurseSheet(FileHandling file) throws IOException {
+		getNurSheet(file);
+		file.updateSheet(getIndexes());
+	}		
+
 	public void viewAllNurse() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Nurse - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");

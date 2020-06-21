@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Row;
 public class Patient extends Person{
 	private String blood_group, registration_date, id, full_name, gender, address, phone;
 	ArrayList<Patient> arrPat;
+	private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
 	public Patient(FileHandling file) throws IOException {
 		super();
 		getPatSheet(file);
@@ -48,6 +50,18 @@ public class Patient extends Person{
 		arrPat.add(new Patient(full_name, id, gender, address, phone, blood_group, registration_date));
 		input.close();
 	}
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
+	}
 	public String getRegistration_date() {
 		return registration_date;
 	}
@@ -65,6 +79,9 @@ public class Patient extends Person{
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
+			if (row == null) {
+				continue;
+			}
 			Pat.add(new Patient(row.getCell(1).getStringCellValue(),
 					row.getCell(0).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -76,6 +93,31 @@ public class Patient extends Person{
 		}
 		this.arrPat = Pat;
 	}
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrPat.remove(getSearchIndex());
+			viewAllPat();
+		} else {
+			System.out.println("Input doesn't exist.");
+		}
+	}
+	public boolean search(String str) {
+		ArrayList<Patient> arr = arrPat;
+		for (int i = 0; i < arr.size(); i++) {
+			Patient find = arr.get(i);
+			if(find.getId().equals(str)) {
+				setSearchIndex(i); 
+				getIndexes().add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void updatePatientSheet(FileHandling file) throws IOException {
+		getPatSheet(file);
+		file.updateSheet(getIndexes());
+	}		
+
 	public void viewAllPat() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Patient - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");

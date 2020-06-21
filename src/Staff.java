@@ -7,7 +7,9 @@ import org.apache.poi.ss.usermodel.Row;
 public class Staff extends Person{
 	private int salary;
 	private String desig, id, full_name, gender, address, phone;
-	ArrayList<Staff> arrStaff;
+	private ArrayList<Staff> arrStaff;
+    private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
 	public Staff(FileHandling file) throws IOException {
 		super();
 		getStaffSheet(file);
@@ -48,6 +50,18 @@ public class Staff extends Person{
 		arrStaff.add(new Staff(id, full_name, gender, phone, address, desig, salary));
 		input.close();
 	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
+	}
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
 	public String getDesig() {
 		return desig;
 	}
@@ -65,6 +79,9 @@ public class Staff extends Person{
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
+			if (row == null) {
+				continue;
+			}
 			staff.add(new Staff(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -76,6 +93,30 @@ public class Staff extends Person{
 		}
 		this.arrStaff = staff;
 	}
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrStaff.remove(getSearchIndex());
+			viewAllStaff();
+		} else {
+			System.out.println("Input doesn't exist.");
+		}
+	}
+	public boolean search(String str) {
+		ArrayList<Staff> arr = arrStaff;
+		for (int i = 0; i < arr.size(); i++) {
+			Staff find = arr.get(i);
+			if(find.getId().equals(str)) {
+				setSearchIndex(i); 
+				getIndexes().add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void updateStaffSheet(FileHandling file) throws IOException {
+		getStaffSheet(file);
+		file.updateSheet(getIndexes());
+	}		
 	public void viewAllStaff() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Staffs - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");

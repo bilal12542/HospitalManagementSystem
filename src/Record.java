@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Row;
 public class Record {
 	private String id, patient_id, date, treatment, sickness, medicines;
 	ArrayList<Record> arrRec = new ArrayList<Record>();
+    private ArrayList<Integer> indexes = new ArrayList<Integer>();
+    private int searchIndex = 0;
 	public Record(FileHandling file) throws IOException {
 		getRecSheet(file);
 		addAllRecObj(file);
@@ -47,6 +49,18 @@ public class Record {
 		file.writeSheet();
 		arrRec.add(new Record(id, patient_id, date, treatment, sickness, medicines));
 		input.close();
+	}
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+	public void setIndexes(ArrayList<Integer> indexes) {
+		this.indexes = indexes;
+	}
+	public int getSearchIndex() {
+		return searchIndex;
+	}
+	public void setSearchIndex(int searchIndex) {
+		this.searchIndex = searchIndex;
 	}
 	public String getMedicines() {
 		return medicines;
@@ -89,7 +103,9 @@ public class Record {
 		Row row;
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
-			
+			if (row == null) {
+				continue;
+			}
 			rec.add(new Record(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -100,7 +116,31 @@ public class Record {
 		}
 		this.arrRec = rec;
 	}
-	public void viewAllRecc() {
+	public void removeObj(String str) {
+		if (search(str)) {
+			arrRec.remove(getSearchIndex());
+			viewAllRec();
+		} else {
+			System.out.println("Input doesn't exist.");
+		}
+	}
+	public boolean search(String str) {
+		ArrayList<Record> arr = arrRec;
+		for (int i = 0; i < arr.size(); i++) {
+			Record find = arr.get(i);
+			if(find.getId().equals(str)) {
+				setSearchIndex(i); 
+				getIndexes().add(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	public void updateRecordSheet(FileHandling file) throws IOException {
+		getRecSheet(file);
+		file.updateSheet(getIndexes());
+	}
+	public void viewAllRec() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Record - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
 		for(int i = 0; i<arrRec.size(); i++) {

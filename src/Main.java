@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -13,8 +12,12 @@ public class Main {
 		Medicine Med = new Medicine(file);
 		Labs lab = new Labs(file);
 		Record rec = new Record(file);
-		lab.search("Covid-19");
+		lab.viewAllLabs();
+//		lab.removeObj("Covid-19");
+//		lab.viewAllLabs();
+//		lab.updateLab(file);
 		
+//		lab.removeObj("Covid-19");
 //		while(true) {
 //			System.out.println("For Doctor press '1'");
 //			System.out.println("For Nurse press '2'");
