@@ -141,7 +141,7 @@ public class Labs{
 		}
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Labs - - - - - - - - - - - - - "
 				+ "- - - - - - - - - - - - - - - - -X");
-		}
+	}
     public void printLabs(){
         System.out.println( "Test Name: " + getTest_name() + "\tCost: " + getLab_cost());
     }
