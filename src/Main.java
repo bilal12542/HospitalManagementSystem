@@ -13,7 +13,8 @@ public class Main {
 		Medicine Med = new Medicine(file);
 		Labs lab = new Labs(file);
 		Record rec = new Record(file);
-		rec.viewAllRecc();
+		lab.search("Covid-19");
+		
 //		while(true) {
 //			System.out.println("For Doctor press '1'");
 //			System.out.println("For Nurse press '2'");

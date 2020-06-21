@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 public class Labs{
     private String test_name;
     private int lab_cost;
-    ArrayList<Labs> arrLabs;
+    private ArrayList<Labs> arrLabs;
     public Labs(FileHandling file) throws IOException {
     	getLabSheet(file);
 		addAllLabObj(file);
@@ -34,7 +34,13 @@ public class Labs{
 		arrLabs.add(new Labs(test_name, lab_cost));
 		input.close();
     }
-    public int getLab_cost() {
+    public ArrayList<Labs> getArr() {
+		return arrLabs;
+	}
+	public void setArr(ArrayList<Labs> arrLabs) {
+		this.arrLabs = arrLabs;
+	}
+	public int getLab_cost() {
 		return lab_cost;
 	}
 	public void setLab_cost(int lab_cost) {
@@ -45,6 +51,14 @@ public class Labs{
 	}
 	public void setTest_name(String test_name) {
 		this.test_name = test_name;
+	}
+	public void search(String id) {
+		ArrayList<Labs> arr = getArr();
+		if(arr.contains(id)) {
+			System.out.println("true");
+		} else {
+			System.out.println("false");
+		}
 	}
 	private void addAllLabObj(FileHandling file) {
     	ArrayList<Labs> labs = new ArrayList<Labs>();
