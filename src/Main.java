@@ -13,6 +13,8 @@ public class Main {
 		Labs lab = new Labs(file);
 		Record rec = new Record(file);
 		lab.viewAllLabs();
+		lab.removeObj("Covid-20");
+		lab.updateLab(file);
 //		lab.removeObj("Covid-19");
 //		lab.viewAllLabs();
 //		lab.updateLab(file);
