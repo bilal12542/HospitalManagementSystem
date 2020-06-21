@@ -104,15 +104,15 @@ public class Medicine{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
-			Meds.add(new Medicine( row.getCell(0).getStringCellValue(),
+				Meds.add(new Medicine("","","",0,0));
+			} else {
+				Meds.add(new Medicine( row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
 					(int) row.getCell(3).getNumericCellValue(),
 					(int) row.getCell(4).getNumericCellValue()
 					));
-		}
+		}}
 		this.arrMeds = Meds;
 	}
 	public void removeObj(String str) {
@@ -136,8 +136,12 @@ public class Medicine{
 		return false;
 	}
 	public void updateMedSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getMedSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}		
 	public void viewAllMeds() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Meds - - - - - - - - - - - - - "

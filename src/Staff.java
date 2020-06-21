@@ -80,8 +80,8 @@ public class Staff extends Person{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				staff.add(new Staff("","","","","","",0));
+			} else {
 			staff.add(new Staff(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -114,8 +114,12 @@ public class Staff extends Person{
 		return false;
 	}
 	public void updateStaffSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getStaffSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}		
 	public void viewAllStaff() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Staffs - - - - - - - - - - - - - "

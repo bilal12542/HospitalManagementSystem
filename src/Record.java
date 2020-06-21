@@ -104,8 +104,8 @@ public class Record {
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				rec.add(new Record("","","","","",""));
+			} else {
 			rec.add(new Record(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -137,8 +137,12 @@ public class Record {
 		return false;
 	}
 	public void updateRecordSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getRecSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}
 	public void viewAllRec() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Record - - - - - - - - - - - - - "

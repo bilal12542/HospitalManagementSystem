@@ -128,7 +128,7 @@ public class Labs{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				labs.add(new Labs("", 0));
+				labs.add(new Labs("",0));
 			} else {
 			labs.add(new Labs(row.getCell(0).getStringCellValue(),
 					(int) row.getCell(1).getNumericCellValue()

@@ -79,8 +79,9 @@ public class Nurse extends Person{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				nur.add(new Nurse("","","","","","",""));
+			} else {
+
 			nur.add(new Nurse(row.getCell(0).getStringCellValue(),
 					row.getCell(1).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -113,8 +114,12 @@ public class Nurse extends Person{
 		return false;
 	}
 	public void updateNurseSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getNurSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}		
 
 	public void viewAllNurse() {

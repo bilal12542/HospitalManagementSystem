@@ -80,8 +80,8 @@ public class Patient extends Person{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				Pat.add(new Patient("","","","","","",""));
+			} else {
 			Pat.add(new Patient(row.getCell(1).getStringCellValue(),
 					row.getCell(0).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -114,8 +114,12 @@ public class Patient extends Person{
 		return false;
 	}
 	public void updatePatientSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getPatSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}		
 
 	public void viewAllPat() {

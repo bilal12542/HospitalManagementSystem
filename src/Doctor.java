@@ -98,8 +98,8 @@ public class Doctor extends Person{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				doc.add(new Doctor("","","","","","","",""));
+			} else {
 			doc.add(new Doctor(row.getCell(1).getStringCellValue(),
 					row.getCell(0).getStringCellValue(),
 					row.getCell(2).getStringCellValue(),
@@ -109,7 +109,7 @@ public class Doctor extends Person{
 					row.getCell(6).getStringCellValue(),
 					row.getCell(7).getStringCellValue()
 					));
-		}
+		}}
 		this.arrDoc = doc;
 	}
 	public void removeObj(String str) {
@@ -133,8 +133,12 @@ public class Doctor extends Person{
 		return false;
 	}
 	public void updateDoctorSheet(FileHandling file) throws IOException {
+		if(indexes.isEmpty()) {
+			;
+		} else {
 		getDocSheet(file);
 		file.updateSheet(getIndexes());
+		}
 	}		
 	public void viewAllDoc() {
 		System.out.println("X- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Doctors - - - - - - - - - - - - - "
