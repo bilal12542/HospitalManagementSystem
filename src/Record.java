@@ -113,7 +113,7 @@ public class Record {
 					row.getCell(4).getStringCellValue(),
 					row.getCell(5).getStringCellValue()
 					));
-		}
+		}}
 		this.arrRec = rec;
 	}
 	public void removeObj(String str) {

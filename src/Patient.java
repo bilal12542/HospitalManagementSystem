@@ -92,6 +92,7 @@ public class Patient extends Person{
 					));
 		}
 		this.arrPat = Pat;
+		}
 	}
 	public void removeObj(String str) {
 		if (search(str)) {

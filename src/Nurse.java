@@ -92,6 +92,7 @@ public class Nurse extends Person{
 					));
 		}
 		this.arrNur = nur;
+		}
 	}
 	public void removeObj(String str) {
 		if (search(str)) {

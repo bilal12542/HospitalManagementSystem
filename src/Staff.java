@@ -90,7 +90,7 @@ public class Staff extends Person{
 					row.getCell(6).getStringCellValue(),
 					(int) row.getCell(5).getNumericCellValue()
 					));
-		}
+		}}
 		this.arrStaff = staff;
 	}
 	public void removeObj(String str) {
