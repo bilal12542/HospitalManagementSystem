@@ -49,6 +49,7 @@ public class FileHandling {
 	}
 	public void updateSheet(ArrayList<Integer> indexes) throws IOException {
 		for(int i: indexes) {
+			//System.out.println(getRow(i+1).getCell(0).getStringCellValue());
 			getSheet().removeRow(getRow(i+1));
 		}
 		indexes.clear();

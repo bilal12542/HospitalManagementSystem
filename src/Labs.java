@@ -100,8 +100,11 @@ public class Labs{
 		for (int i = 0; i < arr.size(); i++) {
 			Labs find = arr.get(i);
 			if(find.getTest_name().equals(str)) {
+				System.out.println(i);
 				setSearchIndex(i); 
 				indexes.add(i);
+				System.out.println(indexes);
+				System.out.println(getSearchIndex());
 				return true;
 			}
 		}
@@ -121,11 +124,12 @@ public class Labs{
 		for(int i = 0; i < file.lastRow(); i++) {
 			row = file.getRow(i+1);
 			if (row == null) {
-				continue;
-			}
+				labs.add(new Labs("", 0));
+			} else {
 			labs.add(new Labs(row.getCell(0).getStringCellValue(),
 					(int) row.getCell(1).getNumericCellValue()
 					));
+			}
 		}
 		this.arrLabs = labs;
 	}

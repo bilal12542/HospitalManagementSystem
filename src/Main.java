@@ -12,8 +12,8 @@ public class Main {
 		Medicine Med = new Medicine(file);
 		Labs lab = new Labs(file);
 		Record rec = new Record(file);
-		lab.viewAllLabs();
-		lab.removeObj("Covid-20");
+		//lab.viewAllLabs();
+		lab.removeObj("covid");
 		lab.updateLab(file);
 //		lab.removeObj("Covid-19");
 //		lab.viewAllLabs();
