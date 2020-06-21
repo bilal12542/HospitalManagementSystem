@@ -65,8 +65,12 @@ public class Labs{
 		this.test_name = test_name;
 	}
 	public void updateLab(FileHandling file) throws IOException {
-		getLabSheet(file);
-		file.updateSheet(getIndexes());
+		if(indexes.isEmpty()) {
+			;
+		} else {
+			getLabSheet(file);
+			file.updateSheet(getIndexes());
+		}
 	}		
 //		for(int i: indexes) {
 //			
