@@ -1,10 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 public class Labs{
@@ -38,7 +35,6 @@ public class Labs{
 		row.getCell(1).setCellValue(lab_cost);
 		file.writeSheet();
 		arrLabs.add(new Labs(test_name, lab_cost));
-		input.close();
     }
     public ArrayList<Integer> getIndexes() {
 		return indexes;
@@ -107,8 +103,6 @@ public class Labs{
 				System.out.println(i);
 				setSearchIndex(i); 
 				indexes.add(i);
-				System.out.println(indexes);
-				System.out.println(getSearchIndex());
 				return true;
 			}
 		}
