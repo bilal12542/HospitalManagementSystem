@@ -21,6 +21,7 @@ public class Main {
 //		lab.updateLab(file);
 //		lab.removeObj("Covid-19");
 		mainloop: while(true) {
+			System.out.println("For Doctor press '0'");
 			System.out.println("For Doctor press '1'");
 			System.out.println("For Nurse press '2'");
 			System.out.println("For Staff press '3'");
