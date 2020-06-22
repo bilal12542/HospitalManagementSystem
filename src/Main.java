@@ -25,7 +25,12 @@ public class Main {
 			System.out.println("For Nurse press '2'");
 			System.out.println("For Staff press '3'");
 			System.out.println("For Labs press '4'");
-			System.out.println("View All Tables press '5'");
+
+			System.out.println("For Pat press '5'");
+
+			System.out.println("For Med press '6'");
+			System.out.println("View All Tables press '8'");
+			
 			switch(sc.nextInt()){
 			case 0:
 				break mainloop;
@@ -138,10 +143,69 @@ public class Main {
 				}
 			break;
 			case 5:
+				loop: while(true) {
+					System.out.println("View Press '1'");
+					System.out.println("Add Press '2'");
+					System.out.println("Remove and Update Sheet Press '3'");
+					System.out.println("Main Menu Press '4'");
+					switch(sc.nextInt()) {
+					case 1:
+						Pat.viewAllPat();
+						break;
+					case 2:
+						Pat.newPatient(file);
+						Pat.viewAllPat();
+						break;
+					case 3:
+						System.out.println("Enter user_id: ");
+						String str = sc2.nextLine();
+						Pat.removeObj(str);
+						Pat.updatePatientSheet(file);
+						break;
+					case 4:
+						break loop;
+					default:
+						System.out.println("Invalid Option");
+					}
+				}
+			break;
+
+			case 6:
+				loop: while(true) {
+					System.out.println("View Press '1'");
+					System.out.println("Add Press '2'");
+					System.out.println("Remove and Update Sheet Press '3'");
+					System.out.println("Main Menu Press '4'");
+					switch(sc.nextInt()) {
+					case 1:
+						Pat.viewAllPat();
+						break;
+					case 2:
+						Med.newMed(file);
+						Med.viewAllMeds();
+						break;
+					case 3:
+						System.out.println("Enter user_id: ");
+						String str = sc2.nextLine();
+						Med.removeObj(str);
+						Med.updateMedSheet(file);
+						break;
+					case 4:
+						break loop;
+					default:
+						System.out.println("Invalid Option");
+					}
+				}
+			break;
+			case 8:
 				doc.viewAllDoc();
 				nur.viewAllNurse();
 				staff.viewAllStaff();
 				lab.viewAllLabs();
+				Pat.viewAllPat();
+
+				Med.viewAllMeds();
+
 				break;
 			default:
 				System.out.println("Invalid Option");
